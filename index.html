@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />-->
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta equiv="Expires" content="0">
+    <meta http-equiv="content-script-type" content="text/javascript">
+
+    <title>北大资源</title>
+    <link rel="stylesheet" href="css/index.css">
+    <!--<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>-->
+    <script src="js/jquery.js"></script>
+    <script src="js/rem.js"></script>
+    <!--	先引入-->
+	<script src='http://res.wx.qq.com/open/js/jweixin-1.0.0.js'></script>
+<!--	后引入-->
+	<script src='js/weixin.js'></script>
+    <script>
+        $(function() {
+            var videoNode = document.getElementsByClassName('video1')[0];
+            videoNode.style.width = window.innerWidth + 'px';
+            videoNode.style.height = window.innerHeight + 'px';
+            $('.bg,.djQimu,.finger').on('click', function() {
+                $('.bg,.qmDiv,.finger').fadeOut(100);
+                videoNode.play();
+                document.addEventListener("WeixinJSBridgeReady", function() {
+                    videoNode.play();
+                }, false);
+
+            })
+            videoNode.onended = function() {
+                $('video').hide(10, function() {
+                    $('.lastBg').fadeIn(100);
+                })
+//               window.location.href="http://www.i-cedong.com/h5/beida2/index3.html";
+            };
+
+            /* 判断横竖屏 */
+            function orientationChange() {
+                switch (window.orientation) {
+                    case 0:
+                        break;
+                    case -90:
+                        alert("请竖屏查看页面，效果更佳");
+                        break;
+                    case 90:
+                        alert("请竖屏查看页面，效果更佳");
+                        break;
+                    case 180:
+                        break;
+                };
+            };
+            /* 添加事件监听 */
+            window.addEventListener('load', function() {
+                orientationChange();
+                window.onorientationchange = orientationChange;
+            });
+
+        })
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <img class="bg" src="img/1.png" alt="第一页">
+        <div class="qmDiv"><img class="djQimu" src="img/qimu1.png" alt=""></div>
+        <video class="video1" src="video/beida.mp4" x5-video-player-type="h5" x5-video-player-fullscreen="false" playsinline="true" webkit-playsinline="true" x5-video-orientation="portraint" preload></video>
+        <p class="finger">点击启幕，精彩开启</p>
+        <img class="lastBg" src="img/4.jpg" alt="">
+    </div>
+    <!--<video class="videoS" id="yd1" x5-video-player-type="h5" x5-video-player-fullscreen="false" webkit-playsinline="" playsinline="" x-webkit-airplay="true" preload="metadata" src="http://videos.fifad.cn/longfu/videos/1702/v2.mp4"></video>-->
+    <!-- <video class="video-source"
+     width="100%"
+　　　height="240px"  /*如果有封面，请设置高度*/
+     controls  /*这个属性规定浏览器为该视频提供播放控件*/  
+     style="object-fit:fill"  /*加这个style会让 Android / web 的视频在微信里的视频全屏，如果是在手机上预览，会让视频的封面同视频一样大小*/
+     webkit-playsinline="true"  /*这个属性是ios 10中设置可以让视频在小窗内播放，也就是不是全屏播放*/  
+     x-webkit-airplay="true"  /*这个属性还不知道作用*/ 
+     playsinline="true"  /*IOS微信浏览器支持小窗内播放*/ 
+     x5-video-player-type="h5" /*启用H5播放器,是wechat安卓版特性*/
+     x5-video-orientation="h5" /*播放器支付的方向，landscape横屏，portraint竖屏，默认值为竖屏*/
+     x5-video-player-fullscreen="true" /*全屏设置，设置为 true 是防止横屏*/
+     preload="auto" /*这个属性规定页面加载完成后载入视频*/ 
+</video>-->
+</body>
+
+</html>
